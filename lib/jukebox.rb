@@ -21,20 +21,25 @@ end
 def list(playlist)
   playlist.each_with_index do |song,i|
     puts "#{i}. #{song}"
+  end
 end
 
 def play(playlist)
   puts "Please enter a song name or number:"
   user_response= gets.chomp
+  song = ""
 
-    if playlist.includes?(user_response)
+    if playlist.include?(user_response)
       puts "Playing #{user_response}"
-    elsif user_response >= 1 && user_response <= playlist.size
-      choice= playlist[choice-1]
+      song = user_response
+    elsif user_response.to_i >= 1 && user_response.to_i <= playlist.size
+      choice = playlist[user_response.to_i-1]
+      song = choice
       "Playing #{choice}"
     else
       puts "Invalid input, please try again"
     end
+    puts "/#{song}/"
 end
 
 def exit_jukebox
@@ -42,27 +47,22 @@ def exit_jukebox
 end
 
 def run(playlist)
-help
-puts "Please enter a command:"
-user_input = gets.chomp
+  help
+  puts "Please enter a command:"
+  user_input = gets.chomp
 
-  case user_input
-  when "help"
-    help
-  when "list"
-    list(playlist)
-  when "exit"
-    exit_jukebox
-    # break
-  when playlist.includes?(user_response)
-    play(playlist)
-  when user_response >= 1 && user_response <= playlist.size
-    play(playlist)
-  else
-    run(playlist)
-  end
-
-end
-
+    case user_input
+    when "help"
+      help
+    when "list"
+      list(playlist)
+    when "play"
+      play(playlist)
+    when "exit"
+      exit_jukebox
+      # break
+    else
+      run(playlist)
+    end
 
 end
