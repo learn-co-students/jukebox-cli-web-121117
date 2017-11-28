@@ -26,6 +26,8 @@ def play(song_array)
   song_choice_index = song_choice.to_i - 1
   if song_choice_index.between?(0,8)
     puts "Playing #{song_array[song_choice_index]}"
+  elsif song_array.include?(song_choice)
+    puts "Playing #{song_choice}"
   else
     puts "Invalid input, please try again"
   end
