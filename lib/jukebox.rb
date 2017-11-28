@@ -23,6 +23,12 @@ end
 def play(song_array)
   puts "Please enter a song name or number:"
   song_choice = gets.chomp
+  song_choice_index = song_choice.to_i - 1
+  if song_choice_index.between?(0,8)
+    puts "Playing #{song_array[song_choice_index]}"
+  else
+    puts "Invalid input, please try again"
+  end
 
 end
 
